@@ -1,0 +1,22 @@
+version: '3'
+services:
+  postgres:
+    container_name: db
+    image: "postgres:latest"
+    environment:
+      - POSTGRES_USER=student
+      - POSTGRES_PASSWORD=student
+      - POSTGRES_DB=sparkifydb
+    ports:
+      - 5432:5432
+   
+  datamodeling-notebook:
+    container_name: data-modeling
+    image: jupyter/datascience-notebook
+    environment:
+      - JUPYTER_TOKEN=ddd
+      - GRANT_SUDO=yes
+    volumes:
+      - "./home:/home/jovyan"
+    ports:
+      - 8888:8888
